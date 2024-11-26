@@ -1,0 +1,21 @@
+import Product from "../../models/product.model.js"
+import ApiError from "../../utils/ApiError.js"
+import ApiResponse from "../../utils/ApiResponse.js"
+
+
+const fetchProduct = async(req, res, next)=>{
+    try {
+        const id = req.params.id
+
+        const product = await Product.findOne({_id: id})
+        if(!product){
+            return res.status(404).json(ApiResponse.error(404,"Product Not Found"))
+        }
+
+        return res.status(200).json(ApiResponse.success(200, "Product fetched successfully", product))
+    } catch (error) {
+        next(new ApiError(500, "Internal Server Error"))
+    }
+}
+
+export default fetchProduct
