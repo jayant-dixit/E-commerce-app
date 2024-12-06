@@ -1,6 +1,7 @@
 import ApiError from "../../utils/ApiError.js"
 import ApiResponse from "../../utils/ApiResponse.js"
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 import User from "../../models/user.model.js"
 import Cart from "../../models/cart.model.js"
 
@@ -15,7 +16,7 @@ const registerUser = async(req, res, next)=>{
     try {
         const {name, email, password, contact} = req.body;
 
-        let user = await User.findOne({email, contact});
+        let user = await User.findOne({email});
         if(user){
             return res.status(400).json(ApiResponse.error(400, "User already exist with this email id or Contact Number"))
         }
