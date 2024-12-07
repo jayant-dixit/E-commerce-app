@@ -22,6 +22,13 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    deliveryTime:{
+        type: String
+    },
+    deliveryFee:{
+        type: Number,
+        default: 0
+    },
     image: {
         type: String,
     },

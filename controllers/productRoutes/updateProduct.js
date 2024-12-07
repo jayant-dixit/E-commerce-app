@@ -6,7 +6,7 @@ import ApiResponse from "../../utils/ApiResponse.js";
 const updateProduct = async(req, res, next)=>{
     try {
         const {id} = req.params;
-        const {name, description, mrp, price, stock, brand} = req.body;
+        const {name, description, mrp, price, deliveryTime, stock, brand} = req.body;
 
         const product = await Product.findById({_id: id})
         if(!product){
@@ -19,6 +19,7 @@ const updateProduct = async(req, res, next)=>{
         if(price) product.price = price
         if(stock) product.stock = stock
         if(brand) product.brand = brand
+        if(deliveryTime) product.deliveryTime = deliveryTime
 
         const updatedProduct = await product.save()
 
