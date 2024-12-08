@@ -6,14 +6,14 @@ import isAdmin from "../middlewares/isAdmin.js";
 import addProduct from "../controllers/productRoutes/addProduct.js";
 import deleteProduct from "../controllers/productRoutes/deleteProduct.js";
 import updateProduct from "../controllers/productRoutes/updateProduct.js";
+import { upload } from "../utils/Multer.js";
 
 
 const router = Router()
 
 router.get("/",fetchAllProducts)
 
-router.post("/addproduct", isLoggedIn, isAdmin, addProduct)
-
+router.post("/addproduct", isLoggedIn, isAdmin, upload.single("image"), addProduct)
 router.delete("/:id", isLoggedIn, isAdmin, deleteProduct)
 
 router.put("/:id", isLoggedIn, isAdmin, updateProduct)

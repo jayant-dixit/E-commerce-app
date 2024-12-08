@@ -5,6 +5,8 @@ const errorHandler = (err, req, res, next)=>{
     const message = err.message || "Internal Server Error"
     const success = err.success
 
+    console.log(err, err.stack)
+
     res.status(statusCode).json({
         success,
         statusCode,
