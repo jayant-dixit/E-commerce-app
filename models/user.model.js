@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
 
 export const addressSchema = new mongoose.Schema({
+    name: {
+        firstName: String,
+        lastName: String
+    },
     street: String,
+    landmark: String,
+    contact: String,
     city: String,
     state: String,
     pincode: String
